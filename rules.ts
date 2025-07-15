@@ -76,18 +76,18 @@ const rules: KarabinerRules[] = [
       c: app("Notion Calendar"),
       v: app("Zed"),
       d: app("Discord"),
-      s: app("Slack"),
+      s: app("Safari"),
       e: app("Superhuman"),
       n: app("Notion"),
-      t: app("Terminal"),
+      t: app("iTerm"),
       // Open todo list managed via *H*ypersonic
       h: open(
         "notion://www.notion.so/stellatehq/7b33b924746647499d906c55f89d5026"
       ),
       z: app("zoom.us"),
       // "M"arkdown (Reflect.app)
-      m: app("Reflect"),
-      r: app("Reflect"),
+      m: app("Mail"),
+      // r: app(""),
       f: app("Finder"),
       // "i"Message
       i: app("Texts"),
