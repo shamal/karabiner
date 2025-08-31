@@ -1,4 +1,5 @@
 {
+    "global": { "show_in_menu_bar": false },
     "profiles": [
         {
             "complex_modifications": {
@@ -386,22 +387,6 @@
                                         "value": 1
                                     }
                                 ],
-                                "description": "Open -a 'Zed.app'",
-                                "from": {
-                                    "key_code": "v",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Zed.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "hyper_sublayer_o",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "description": "Open -a 'Discord.app'",
                                 "from": {
                                     "key_code": "d",
@@ -584,6 +569,22 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [{ "shell_command": "open -a 'iA Presenter.app'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_sublayer_o",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "Open -a 'Visual Studio Code.app'",
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "shell_command": "open -a 'Visual Studio Code.app'" }],
                                 "type": "basic"
                             },
                             {
@@ -1780,45 +1781,6 @@
                     }
                 ]
             },
-            "devices": [
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 53296,
-                        "vendor_id": 13364
-                    },
-                    "ignore_vendor_events": true,
-                    "manipulate_caps_lock_led": false
-                },
-                {
-                    "identifiers": {
-                        "is_pointing_device": true,
-                        "product_id": 53296,
-                        "vendor_id": 13364
-                    },
-                    "ignore": false,
-                    "ignore_vendor_events": true
-                },
-                {
-                    "identifiers": {
-                        "is_game_pad": true,
-                        "product_id": 53296,
-                        "vendor_id": 13364
-                    },
-                    "ignore": false,
-                    "ignore_vendor_events": true
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 2739,
-                        "vendor_id": 13364
-                    },
-                    "ignore": false,
-                    "ignore_vendor_events": true
-                }
-            ],
             "name": "Default",
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
