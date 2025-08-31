@@ -40,10 +40,6 @@ const rules: KarabinerRules[] = [
       },
       //      {
       //        type: "basic",
-      //        description: "Disable CMD + Tab to force Hyper Key usage",
-      //        from: {
-      //          key_code: "tab",
-      //          modifiers: {
       //            mandatory: ["left_command"],
       //          },
       //        },
@@ -74,7 +70,6 @@ const rules: KarabinerRules[] = [
       1: app("1Password"),
       g: app("Google Chrome"),
       c: app("Notion Calendar"),
-      v: app("Zed"),
       d: app("Discord"),
       s: app("Safari"),
       e: app("Superhuman"),
@@ -94,6 +89,7 @@ const rules: KarabinerRules[] = [
       p: app("Spotify"),
       a: app("iA Presenter"),
       // "W"hatsApp has been replaced by Texts
+      v: app("Visual Studio Code"),
       w: open("Texts"),
       l: open(
         "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
