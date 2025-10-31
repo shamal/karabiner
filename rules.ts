@@ -52,6 +52,14 @@ const rules: KarabinerRules[] = [
     ],
   },
   ...createHyperSubLayers({
+    escape: {
+      description: "tilde in Alice layout",
+      to: [
+        {
+          key_code: "grave_accent_and_tilde",
+        },
+      ],
+    },
     spacebar: open(
       "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
     ),
@@ -90,7 +98,6 @@ const rules: KarabinerRules[] = [
       a: app("iA Presenter"),
       // "W"hatsApp has been replaced by Texts
       v: app("Visual Studio Code"),
-      s
       w: open("Texts"),
       l: open(
         "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
