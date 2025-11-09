@@ -1,4 +1,6 @@
 import fs from "fs";
+import os from "os";
+import path from "path";
 import { KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open, window, shell } from "./utils";
 
@@ -49,6 +51,213 @@ const rules: KarabinerRules[] = [
       //          },
       //        ],
       //      },
+    ],
+  },
+  // Direct hjkl arrow keys when Hyper is held (no sublayer active)
+  {
+    description: "Hyper Key: hjkl to arrow keys (vim directions)",
+    manipulators: [
+      {
+        description: "Hyper + h -> left arrow",
+        type: "basic",
+        from: {
+          key_code: "h",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [
+          {
+            key_code: "left_arrow",
+          },
+        ],
+        conditions: [
+          {
+            type: "variable_if",
+            name: "hyper",
+            value: 1,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_escape",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_spacebar",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_b",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_o",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_w",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_s",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_v",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_c",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_r",
+            value: 0,
+          },
+        ],
+      },
+      {
+        description: "Hyper + k -> up arrow",
+        type: "basic",
+        from: {
+          key_code: "k",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [
+          {
+            key_code: "up_arrow",
+          },
+        ],
+        conditions: [
+          {
+            type: "variable_if",
+            name: "hyper",
+            value: 1,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_escape",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_spacebar",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_b",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_o",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_w",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_s",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_v",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_c",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_r",
+            value: 0,
+          },
+        ],
+      },
+      {
+        description: "Hyper + l -> right arrow",
+        type: "basic",
+        from: {
+          key_code: "l",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [
+          {
+            key_code: "right_arrow",
+          },
+        ],
+        conditions: [
+          {
+            type: "variable_if",
+            name: "hyper",
+            value: 1,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_escape",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_spacebar",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_b",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_o",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_w",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_s",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_v",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_c",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_r",
+            value: 0,
+          },
+        ],
+      },
     ],
   },
   ...createHyperSubLayers({
@@ -356,23 +565,31 @@ const rules: KarabinerRules[] = [
   },
 ];
 
-fs.writeFileSync(
-  "karabiner.json",
-  JSON.stringify(
-    {
-      global: {
-        show_in_menu_bar: false,
-      },
-      profiles: [
-        {
-          name: "Default",
-          complex_modifications: {
-            rules,
-          },
-        },
-      ],
+const karabinerConfig = JSON.stringify(
+  {
+    global: {
+      show_in_menu_bar: false,
     },
-    null,
-    2
-  )
+    profiles: [
+      {
+        name: "Default",
+        complex_modifications: {
+          rules,
+        },
+      },
+    ],
+  },
+  null,
+  2
 );
+
+// Write to project root
+fs.writeFileSync("karabiner.json", karabinerConfig);
+console.log("✓ Written karabiner.json to project root");
+
+// Copy to ~/.config/karabiner/
+const configDir = path.join(os.homedir(), ".config", "karabiner");
+fs.mkdirSync(configDir, { recursive: true });
+console.log(`✓ Ensured directory exists: ${configDir}`);
+fs.writeFileSync(path.join(configDir, "karabiner.json"), karabinerConfig);
+console.log(`✓ Copied karabiner.json to ${configDir}/karabiner.json`);
