@@ -192,6 +192,73 @@ const rules: KarabinerRules[] = [
         ],
       },
       {
+        description: "Hyper + j -> down arrow",
+        type: "basic",
+        from: {
+          key_code: "j",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [
+          {
+            key_code: "down_arrow",
+          },
+        ],
+        conditions: [
+          {
+            type: "variable_if",
+            name: "hyper",
+            value: 1,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_escape",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_spacebar",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_b",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_o",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_w",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_s",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_v",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_c",
+            value: 0,
+          },
+          {
+            type: "variable_if",
+            name: "hyper_sublayer_r",
+            value: 0,
+          },
+        ],
+      },
+      {
         description: "Hyper + l -> right arrow",
         type: "basic",
         from: {
@@ -540,6 +607,25 @@ const rules: KarabinerRules[] = [
     },
   }),
   {
+    description: "Alt-N: Open ChatGPT Atlas",
+    manipulators: [
+      {
+        type: "basic",
+        from: {
+          key_code: "n",
+          modifiers: {
+            mandatory: ["left_option"],
+          },
+        },
+        to: [
+          {
+            shell_command: 'open -a "ChatGPT Atlas.app"',
+          },
+        ],
+      },
+    ],
+  },
+  {
     description: "Change Backspace to Spacebar when Minecraft is focused",
     manipulators: [
       {
@@ -569,12 +655,18 @@ const karabinerConfig = JSON.stringify(
   {
     global: {
       show_in_menu_bar: false,
+      virtual_hid_keyboard: {
+        keyboard_type: "ansi",
+      },
     },
     profiles: [
       {
         name: "Default",
         complex_modifications: {
           rules,
+        },
+        virtual_hid_keyboard: {
+          keyboard_type_v2: "ansi",
         },
       },
     ],
